@@ -1,11 +1,6 @@
+#include "./traversal.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct Node {
-  int data;
-  struct Node *left;
-  struct Node *right;
-} node;
 
 node *getNode(int data) {
   // malloc returns a pointer to void, which should be casted in cpp, and not in
@@ -46,35 +41,6 @@ node *constructBST(int *arr, int n) {
   return root;
 }
 
-void inOrderTraversal(node *root) {
-  if (root == NULL) {
-    return;
-  }
-  inOrderTraversal(root->left);
-  printf("%d\t", root->data);
-  inOrderTraversal(root->right);
-}
-
-void preOrderTraversal(node *root) {
-  if (root == NULL) {
-    return;
-  }
-
-  printf("%d\t", root->data);
-  preOrderTraversal(root->left);
-  preOrderTraversal(root->right);
-}
-
-void postOrderTraversal(node *root) {
-  if (root == NULL) {
-    return;
-  }
-
-  postOrderTraversal(root->left);
-  postOrderTraversal(root->right);
-  printf("%d\t", root->data);
-}
-
 int main() {
   int arr[] = {7, 4, 12, 3, 6, 8, 1, 5, 10};
   int n = sizeof(arr) / sizeof(arr[0]);
@@ -86,6 +52,9 @@ int main() {
   preOrderTraversal(root);
   printf("\nPostorder traversal\n");
   postOrderTraversal(root);
+  printf("\nBFS traversal\n");
+  BFSTraversal(root);
+
   printf("\n");
   return 0;
 }
