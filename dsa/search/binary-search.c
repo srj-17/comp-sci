@@ -29,14 +29,18 @@ int main() {
 int binarySearch(int *array, int searchItem, int startIndex, int endIndex) {
   // truncates the decimal values
   int midPoint = (startIndex + endIndex) / 2;
-  if (array[midPoint] == searchItem) {
-    return midPoint;
-  } else if (array[midPoint] > searchItem) {
-    // was not found at midpoint, so we don't search midpoint
-    endIndex = midPoint - 1;
-    return binarySearch(array, searchItem, startIndex, endIndex);
-  } else {
-    startIndex = midPoint + 1;
-    return binarySearch(array, searchItem, startIndex, endIndex);
+  if (endIndex > startIndex) {
+    if (array[midPoint] == searchItem) {
+      return midPoint;
+    } else if (array[midPoint] > searchItem) {
+      // was not found at midpoint, so we don't search midpoint
+      endIndex = midPoint - 1;
+      return binarySearch(array, searchItem, startIndex, endIndex);
+    } else {
+      startIndex = midPoint + 1;
+      return binarySearch(array, searchItem, startIndex, endIndex);
+    }
   }
+
+  return -1;
 }
