@@ -2,6 +2,7 @@
 #include <queue>
 #include <stdio.h>
 
+// dfs implementations
 void inOrderTraversal(node *root) {
   if (root == NULL) {
     return;
@@ -31,6 +32,7 @@ void postOrderTraversal(node *root) {
   printf("%d\t", root->data);
 }
 
+// bfs implementation
 void BFSTraversal(node *root) {
   if (root == NULL)
     return;

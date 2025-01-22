@@ -171,32 +171,34 @@ ll.prepend(1);
 ll.append(5);
 ll.append(8);
 
-console.log("");
-console.log("Self test: ");
-console.log("------------------------------------");
-console.log(`Size: ${ll.size()}`);
-console.log(`String: ${ll.toString()}`);
-console.log(`Tail: ${ll.tail().value}`);
-console.log(`Head: ${ll.getHead().value}`);
-console.log(`At 1 (0 indexed): ${ll.at(1).value}`);
-console.log(`Pop: ${ll.pop().value}`);
-console.log(`String after pop: ${ll.toString()}`);
-console.log(`Contains 2: ${ll.contains(2)}`);
-console.log(`Contains 5: ${ll.contains(5)}`);
-console.log(`Index of 2 (0 indexed): ${ll.find(2)}`);
-// first index
-ll.insertAt(1, 9);
-// middle index
-ll.insertAt(0, 10);
-// last index
-ll.insertAt(4, 3);
-console.log(`String after insertAt: ${ll.toString()}`);
-// first index
-ll.removeAt(0);
-// middle index
-ll.removeAt(3);
-// last index
-ll.removeAt(3);
-console.log(`String after removeAt: ${ll.toString()}`);
+// // Test
+//console.log("");
+//console.log("Self test: ");
+//console.log("------------------------------------");
+//console.log(`Size: ${ll.size()}`);
+//console.log(`String: ${ll.toString()}`);
+//console.log(`Tail: ${ll.tail().value}`);
+//console.log(`Head: ${ll.getHead().value}`);
+//console.log(`At 1 (0 indexed): ${ll.at(1).value}`);
+//console.log(`Pop: ${ll.pop().value}`);
+//console.log(`String after pop: ${ll.toString()}`);
+//console.log(`Contains 2: ${ll.contains(2)}`);
+//console.log(`Contains 5: ${ll.contains(5)}`);
+//console.log(`Index of 2 (0 indexed): ${ll.find(2)}`);
+//// first index
+//ll.insertAt(1, 9);
+//// middle index
+//ll.insertAt(0, 10);
+//// last index
+//ll.insertAt(4, 3);
+//console.log(`String after insertAt: ${ll.toString()}`);
+//// first index
+//ll.removeAt(0);
+//// middle index
+//ll.removeAt(3);
+//// last index
+//ll.removeAt(3);
+//console.log(`String after removeAt: ${ll.toString()}`);
 
 export default LinkedList;
+export { Node };
