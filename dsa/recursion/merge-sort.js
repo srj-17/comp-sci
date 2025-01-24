@@ -43,9 +43,11 @@ function mergeSort(array) {
     return merge(sortedLeft, sortedRight);
 }
 
-console.log("");
-console.log("       Test:");
-console.log("--------------------");
-console.log(mergeSort([3, 2, 1, 13, 8, 5, 0, 1]));
-console.log(mergeSort([105, 79, 100, 110]));
-console.log(mergeSort([8, 5, 6, 3, 9]));
+//console.log("");
+//console.log("       Test:");
+//console.log("--------------------");
+//console.log(mergeSort([3, 2, 1, 13, 8, 5, 0, 1]));
+//console.log(mergeSort([105, 79, 100, 110]));
+//console.log(mergeSort([8, 5, 6, 3, 9]));
+
+export default mergeSort;
