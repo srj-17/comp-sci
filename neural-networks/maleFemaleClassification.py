@@ -1,4 +1,5 @@
 from neuron import Neuron
+from utility import getInput, getTarget
 
 """
 Program to train the given training set
@@ -14,78 +15,69 @@ Training data provided:
         6.1     85          Male
         5.5     62          Male
 
-Note that we've represented Male as 0
+Note that we've represented Male as -1
 and female as 1
 """
 
-
-def getInputs(training_data):
-    inputs = []
-
-    for sample in training_data:
-        minSampleData = min(sample)
-        maxSampleData = max(sample)
-
-        # normalize and append
-        inputs.append(
-            [(x - minSampleData) / (maxSampleData - minSampleData) for x in sample[:-1]]
-        )
-
-    return inputs
-
-
-def getTargets(training_data):
-    outputs = []
-    for sample in training_data:
-        minSampleData = min(sample)
-        maxSampleData = max(sample)
-
-        # normalize and append
-        outputs.append((sample[-1] - minSampleData) / (maxSampleData - minSampleData))
-
-    return outputs
-
-
-training_data = [
-    [5.9, 75, 0],
-    [5.8, 86, 0],
+raw_training_data = [
+    [5.9, 75, -1],
+    [5.8, 86, -1],
     [5.2, 50, 1],
     [5.4, 55, 1],
-    [6.1, 85, 0],
-    [5.5, 62, 0],
+    [6.1, 85, -1],
+    [5.5, 62, -1],
 ]
 
-testData = [[6, 82], [5.3, 52]]
+maxX0 = max(x[0] for x in raw_training_data)
+minX0 = min(x[0] for x in raw_training_data)
+maxX1 = max(x[1] for x in raw_training_data)
+minX1 = min(x[1] for x in raw_training_data)
 
+# normalized
+training_data = [
+    [(x[0] - minX0) / (maxX0 - minX0), (x[1] - minX1) / (maxX1 - minX1), x[2]]
+    for x in raw_training_data
+]
 
-NO_OF_SAMPLES = len(training_data)
-inputs = getInputs(training_data)
-targets = getTargets(training_data)
+rawTestData = [[6, 82], [5.3, 52]]
 
-# 2 weights for 2 inputs
-prevWeights = [0, 0]
-prevBias = 0
+# normalized
+testData = [
+    [(x[0] - minX0) / (maxX0 - minX0), (x[1] - minX1) / (maxX1 - minX1)]
+    for x in rawTestData
+]
+
 
 newWeights = [0, 0]
 newBias = 0
 
 learningRate = 1
 
-neuron = Neuron(prevWeights, prevBias)
+neuron = Neuron(2)
 
-for i in range(NO_OF_SAMPLES):
-    sampleInput = inputs[i]
-    t = targets[i]
-    y = neuron.threashold(sampleInput)
+noOfEpoch = 4
 
-    for j in range(len(sampleInput)):
-        newWeights[j] = prevWeights[j] + learningRate * (t - y) * sampleInput[j]
 
-    newBias = prevBias + learningRate * (t - y)
-    neuron.update(newWeights, newBias)
+def trainNeuron():
+    for sample in training_data:
+        x = getInput(sample)
+        t = getTarget(sample)
+        y = neuron.threashold(x)
 
-    prevBias = newBias
-    prevWeights = newWeights
+        newWeights = [
+            neuron.weights[i] + learningRate * (t - y) * x[i] for i in range(len(x))
+        ]
+
+        newBias = neuron.bias + learningRate * (t - y)
+
+        neuron.update(newWeights, newBias)
+
+        print(
+            "Current bias: ",
+            neuron.bias,
+            "Current weights: ",
+            neuron.weights,
+        )
 
 
 def testNetwork(neuron, testData):
@@ -97,4 +89,10 @@ def testNetwork(neuron, testData):
     return testOutputs
 
 
-print(testNetwork(neuron, testData))
+for i in range(noOfEpoch):
+    trainNeuron()
+
+print(
+    "Test output :",
+    ["Male" if x == -1 else "Female" for x in testNetwork(neuron, testData)],
+)
