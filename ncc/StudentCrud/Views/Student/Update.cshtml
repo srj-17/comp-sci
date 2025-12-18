@@ -1,0 +1,43 @@
+@model StudentCrud.Models.Student
+@{
+    ViewData["Title"] = "Update";
+}
+
+<a asp-controller="Student" asp-action="Get">Go back</a>
+
+<form asp-controller="Student" asp-action="Update" method="POST">
+    <div class="forminput">
+        @{/* 
+            asp-for targets the model defined with @model
+            so, FirstName targets student.FirstName
+        */}
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="forminput">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    <div class="forminput">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="forminput">
+        <label asp-for="EnrollmentDate"></label>
+        <input asp-for="EnrollmentDate" class="form-control" />
+        <span asp-validation-for="EnrollmentDate" class="text-danger"></span>
+    </div>
+
+    @{/* For updates */}
+    <input type="hidden" asp-for="Id" />
+    
+    <div class="btn-container">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

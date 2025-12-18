@@ -1,0 +1,42 @@
+@model IEnumerable<StudentCrud.Models.Student>
+
+@{
+    ViewData["Title"] = "All Students";
+}
+
+<a asp-controller="Student" asp-action="Index">Go back</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Enrollment Date</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model) {
+            <tr>
+                <td>@student.Id</td>
+                <td>@student.FirstName @student.LastName</td>
+                <td>@student.Email</td>
+                <td> @student.EnrollmentDate </td>
+                <td>
+                    <div>
+                        <a asp-controller="Student" asp-action="Update" asp-route-id="@student.Id" class="btn btn-primary">
+                            Update
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <form asp-controller="Student" asp-action="Delete" asp-route-id="@student.Id" method="POST">
+                        <button type="submit" class="btn btn-primary">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

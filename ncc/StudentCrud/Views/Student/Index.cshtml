@@ -1,0 +1,14 @@
+@{
+    ViewData["Title"] = "Student Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to the student page</h1>
+    <div>
+        What do you want to do?
+    </div>
+    <div>
+        <a asp-controller="Student" asp-action="Get">View all Students</a>
+        <a asp-controller="Student" asp-action="Create">Create a new Student</a>
+    </div>
+</div>
