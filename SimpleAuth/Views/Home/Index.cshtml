@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">MVC Auth Demo</h1>
+    <hr />
+
+    @if (User.Identity?.IsAuthenticated ?? false)
+    {
+        <div class="alert alert-success">
+            You are logged in as: <strong>@User.Identity.Name</strong>
+        </div>
+
+        <!-- Links to MVC Actions -->
+        <div class="mb-3">
+            <a href="/Home/UserDashboard" class="btn btn-primary">Go to User Dashboard</a>
+            <a href="/Home/AdminPanel" class="btn btn-danger">Go to Admin Panel</a>
+        </div>
+
+        <!-- Logout Button (Posts to Identity Area) -->
+        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/" method="post">
+            <button type="submit" class="btn btn-outline-dark">Logout</button>
+        </form>
+    }
+    else
+    {
+        <div class="alert alert-warning">You are not logged in.</div>
+        
+        <!-- Links to Built-in Identity Pages -->
+        <a class="btn btn-primary" href="/Identity/Account/Login">Login</a>
+        <a class="btn btn-secondary" href="/Identity/Account/Register">Register</a>
+    }
+</div>
