@@ -66,7 +66,7 @@ class NeuralNetwork:
 X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
 y = np.array([[0], [1], [1], [0]])
 
-nn = NeuralNetwork(input_size=2, hidden_size=4, output_size=1)
+nn = NeuralNetwork(input_size=2, hidden_size=2, output_size=1)
 nn.train(X, y, epochs=10000, learning_rate=0.1)
 
 output = nn.feedforward(X)
